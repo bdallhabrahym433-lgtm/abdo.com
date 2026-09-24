@@ -32,15 +32,10 @@ html {
 
 
 body {
-
     font-family: "Cairo", sans-serif;
-
-    background: var(--primary);
-
+    background: var(--bg);
     color: var(--text);
-
     line-height: 1.8;
-
     overflow-x: hidden;
 }
 
@@ -112,27 +107,28 @@ HEADER
 ===================================================== */
 
 .header {
-
     position: fixed;
-
     top: 0;
     right: 0;
-
     width: 100%;
-
     z-index: 1000;
 
-    background: rgba(8,8,8,0.85);
+    background: rgba(93, 173, 226, 0.95);
 
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+
+    transition: var(--transition);
 }
 
 
 .light-mode .header {
-
-    background: rgba(255,255,255,0.9);
+    background: rgba(93, 173, 226, 0.95);
+    border-bottom: 1px solid rgba(255,255,255,0.25);
 }
 
 
@@ -163,18 +159,14 @@ HEADER
 
 
 .logo span {
-
     width: 40px;
     height: 40px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
 
-    background: var(--primary);
-
-    color: #000;
+    background: #ffffff;
+    color: #3498DB;
 
     border-radius: 10px;
 }
@@ -191,23 +183,16 @@ HEADER
 
 
 .nav-link {
-
-    color: var(--text-secondary);
-
+    color: #ffffff;
     font-size: 13px;
-
     font-weight: 600;
-
     transition: var(--transition);
-
     position: relative;
 }
 
-
 .nav-link:hover,
 .nav-link.active {
-
-    color: var(--primary);
+    color: #000000;
 }
 
 
