@@ -35,7 +35,7 @@ body {
 
     font-family: "Cairo", sans-serif;
 
-    background: var(--bg);
+    background: var(--primary);
 
     color: var(--text);
 
