@@ -13,6 +13,7 @@ const navbar =
 menuToggle.addEventListener("click", () => {
 
     navbar.classList.toggle("active");
+    navbar.style.transition = "0.4s ease";
 
     const icon =
         menuToggle.querySelector("i");
