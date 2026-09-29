@@ -1,21 +1,13 @@
 console.log("SCRIPT JS LOADED");
 
-```javascript
-/* =====================================================
-   SUPABASE CONNECTION
-===================================================== */
+const SUPABASE_URL = "https://cpbttbxvyhtcmnpjhpec.supabase.co";
 
-const SUPABASE_URL =
-    "https://cpbttbxvyhtcmnpjhpec.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_a5SRTKPHe52kjBSaTDfrTw_DCbTkmZh";
 
-const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_a5SRTKPHe52kjBSaTDfrTw_DCbTkmZh";
-
-const supabaseClient =
-    supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 /* =====================================================
    MOBILE MENU
 ===================================================== */
