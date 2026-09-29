@@ -1,5 +1,20 @@
 ```javascript
 /* =====================================================
+   SUPABASE CONNECTION
+===================================================== */
+
+const SUPABASE_URL =
+    "https://cpbttbxvyhtcmnpjhpec.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_a5SRTKPHe52kjBSaTDfrTw_DCbTkmZh";
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+/* =====================================================
    MOBILE MENU
 ===================================================== */
 
@@ -521,4 +536,23 @@ contactForm.addEventListener(
 
     }
 );
+/* =====================================================
+   SUPABASE CONNECTION TEST
+===================================================== */
+
+async function testSupabaseConnection() {
+    const { data, error } = await supabaseClient
+        .from("profile")
+        .select("*")
+        .limit(1);
+
+    if (error) {
+        console.error("Supabase Error:", error);
+        return;
+    }
+
+    console.log("Supabase Connected Successfully:", data);
+}
+
+testSupabaseConnection();
 ```
