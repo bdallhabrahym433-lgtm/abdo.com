@@ -2,7 +2,7 @@ console.log("SCRIPT JS LOADED");
 
 const SUPABASE_URL = "https://cpbttbxvyhtcmnpjhpec.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY = "ضع_مفتاح_Publishable_الخاص_بك_هنا";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_a5SRTKPHe52kjBSaTDfrTw_DCbTkmZh";
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
