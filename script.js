@@ -1,3 +1,5 @@
+console.log("SCRIPT JS LOADED");
+
 ```javascript
 /* =====================================================
    SUPABASE CONNECTION
