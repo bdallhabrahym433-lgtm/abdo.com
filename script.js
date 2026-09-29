@@ -2,12 +2,14 @@ console.log("SCRIPT JS LOADED");
 
 const SUPABASE_URL = "https://cpbttbxvyhtcmnpjhpec.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_a5SRTKPHe52kjBSaTDfrTw_DCbTkmZh";
+const SUPABASE_PUBLISHABLE_KEY = "ضع_مفتاح_Publishable_الخاص_بك_هنا";
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
 );
+
+
 /* =====================================================
    MOBILE MENU
 ===================================================== */
@@ -17,7 +19,6 @@ const menuToggle =
 
 const navbar =
     document.getElementById("navbar");
-
 
 menuToggle.addEventListener("click", () => {
 
@@ -30,13 +31,11 @@ menuToggle.addEventListener("click", () => {
     if (navbar.classList.contains("active")) {
 
         icon.classList.remove("fa-bars");
-
         icon.classList.add("fa-xmark");
 
     } else {
 
         icon.classList.remove("fa-xmark");
-
         icon.classList.add("fa-bars");
 
     }
@@ -55,7 +54,6 @@ document.querySelectorAll(".nav-link")
             menuToggle.querySelector("i");
 
         icon.classList.remove("fa-xmark");
-
         icon.classList.add("fa-bars");
 
     });
@@ -70,10 +68,8 @@ document.querySelectorAll(".nav-link")
 const themeToggle =
     document.getElementById("themeToggle");
 
-
 const savedTheme =
     localStorage.getItem("theme");
-
 
 if (savedTheme === "light") {
 
@@ -91,7 +87,6 @@ themeToggle.addEventListener("click", () => {
 
     const light =
         document.body.classList.contains("light-mode");
-
 
     if (light) {
 
@@ -122,7 +117,6 @@ const sections =
 const navLinks =
     document.querySelectorAll(".nav-link");
 
-
 window.addEventListener("scroll", () => {
 
     let current = "";
@@ -140,7 +134,6 @@ window.addEventListener("scroll", () => {
         }
 
     });
-
 
     navLinks.forEach(link => {
 
@@ -167,7 +160,6 @@ window.addEventListener("scroll", () => {
 const backToTop =
     document.getElementById("backToTop");
 
-
 window.addEventListener("scroll", () => {
 
     if (window.scrollY > 500) {
@@ -188,7 +180,6 @@ backToTop.addEventListener("click", () => {
     window.scrollTo({
 
         top: 0,
-
         behavior: "smooth"
 
     });
@@ -224,13 +215,8 @@ const noDocuments =
 const documentsCount =
     document.getElementById("documentsCount");
 
-
 let currentFilter = "all";
 
-
-/*
-    تحديث عدد الوثائق
-*/
 
 function updateDocumentCount() {
 
@@ -252,10 +238,6 @@ function updateDocumentCount() {
 }
 
 
-/*
-    فلترة الوثائق
-*/
-
 function filterDocuments() {
 
     const search =
@@ -264,7 +246,6 @@ function filterDocuments() {
             .trim();
 
     let visible = 0;
-
 
     documentCards.forEach(card => {
 
@@ -275,15 +256,12 @@ function filterDocuments() {
             card.dataset.title
                 .toLowerCase();
 
-
         const categoryMatch =
             currentFilter === "all"
             || category === currentFilter;
 
-
         const searchMatch =
             title.includes(search);
-
 
         if (
             categoryMatch
@@ -315,15 +293,10 @@ function filterDocuments() {
 
     }
 
-
     updateDocumentCount();
 
 }
 
-
-/*
-    أزرار الفلترة
-*/
 
 filterButtons.forEach(button => {
 
@@ -335,13 +308,10 @@ filterButtons.forEach(button => {
 
         });
 
-
         button.classList.add("active");
-
 
         currentFilter =
             button.dataset.filter;
-
 
         filterDocuments();
 
@@ -350,19 +320,11 @@ filterButtons.forEach(button => {
 });
 
 
-/*
-    البحث
-*/
-
 searchInput.addEventListener(
     "input",
     filterDocuments
 );
 
-
-/*
-    العدد عند فتح الصفحة
-*/
 
 filterDocuments();
 
@@ -378,14 +340,9 @@ const modalBody =
     document.getElementById("modalBody");
 
 
-/*
-    فتح الوثيقة
-*/
-
 function openDocument(path, type) {
 
     modalBody.innerHTML = "";
-
 
     if (type === "image") {
 
@@ -413,7 +370,6 @@ function openDocument(path, type) {
 
     }
 
-
     documentModal.classList.add("active");
 
     document.body.style.overflow =
@@ -421,10 +377,6 @@ function openDocument(path, type) {
 
 }
 
-
-/*
-    إغلاق الوثيقة
-*/
 
 function closeDocument() {
 
@@ -437,10 +389,6 @@ function closeDocument() {
 
 }
 
-
-/*
-    الضغط خارج النافذة
-*/
 
 documentModal.addEventListener(
     "click",
@@ -458,10 +406,6 @@ documentModal.addEventListener(
     }
 );
 
-
-/*
-    زر ESC
-*/
 
 document.addEventListener(
     "keydown",
@@ -494,7 +438,6 @@ contactForm.addEventListener(
 
         event.preventDefault();
 
-
         const name =
             document.getElementById("name")
                 .value.trim();
@@ -525,28 +468,40 @@ contactForm.addEventListener(
         formMessage.textContent =
             "تم إدخال الرسالة بنجاح. اربط النموذج بخدمة بريد إلكتروني لإرسالها فعليًا.";
 
-
         contactForm.reset();
 
     }
 );
+
+
 /* =====================================================
    SUPABASE CONNECTION TEST
 ===================================================== */
 
 async function testSupabaseConnection() {
-    const { data, error } = await supabaseClient
-        .from("profile")
-        .select("*")
-        .limit(1);
+
+    const { data, error } =
+        await supabaseClient
+            .from("profile")
+            .select("*")
+            .limit(1);
 
     if (error) {
-        console.error("Supabase Error:", error);
+
+        console.error(
+            "Supabase Error:",
+            error
+        );
+
         return;
+
     }
 
-    console.log("Supabase Connected Successfully:", data);
+    console.log(
+        "Supabase Connected Successfully:",
+        data
+    );
+
 }
 
 testSupabaseConnection();
-```
