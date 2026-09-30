@@ -570,3 +570,69 @@ async function loadProjects() {
 }
 
 loadProjects();
+/* =====================================================
+   LOAD EXPERIENCES FROM SUPABASE
+===================================================== */
+
+async function loadExperiences() {
+
+    const { data, error } = await supabaseClient
+        .from("experiences")
+        .select("*")
+        .order("start_year", { ascending: true });
+
+    if (error) {
+
+        console.error("Experiences Error:", error);
+
+        return;
+
+    }
+
+    const timeline =
+        document.querySelector(".timeline");
+
+    if (!timeline) return;
+
+    timeline.innerHTML = "";
+
+    data.forEach(experience => {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "timeline-item";
+
+        item.innerHTML = `
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-date">
+                ${experience.start_year || ""} -
+                ${experience.end_year || ""}
+            </div>
+
+            <div class="timeline-content">
+
+                <h3>
+                    ${experience.job_title || ""}
+                </h3>
+
+                <h4>
+                    ${experience.company || ""}
+                </h4>
+
+                <p>
+                    ${experience.description || ""}
+                </p>
+
+            </div>
+        `;
+
+        timeline.appendChild(item);
+
+    });
+
+}
+
+loadExperiences();
