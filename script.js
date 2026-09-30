@@ -505,3 +505,68 @@ async function testSupabaseConnection() {
 }
 
 testSupabaseConnection();
+/* =====================================================
+   LOAD PROJECTS FROM SUPABASE
+===================================================== */
+
+async function loadProjects() {
+
+    const { data, error } = await supabaseClient
+        .from("projects")
+        .select("*")
+        .order("id", { ascending: true });
+
+    if (error) {
+
+        console.error("Projects Error:", error);
+
+        return;
+
+    }
+
+    const projectsGrid =
+        document.querySelector(".projects-grid");
+
+    if (!projectsGrid) return;
+
+    projectsGrid.innerHTML = "";
+
+    data.forEach(project => {
+
+        const article =
+            document.createElement("article");
+
+        article.className = "project-card";
+
+        article.innerHTML = `
+            <div class="project-image">
+
+                <img src="${project.image_url || ""}"
+                     alt="${project.title || "مشروع"}">
+
+            </div>
+
+            <div class="project-content">
+
+                <span class="project-category">
+                    مشروع
+                </span>
+
+                <h3>
+                    ${project.title || ""}
+                </h3>
+
+                <p>
+                    ${project.description || ""}
+                </p>
+
+            </div>
+        `;
+
+        projectsGrid.appendChild(article);
+
+    });
+
+}
+
+loadProjects();
