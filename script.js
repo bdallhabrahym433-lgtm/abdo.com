@@ -708,3 +708,35 @@ async function loadDocuments() {
 }
 
 loadDocuments();
+/* =====================================================
+   LOAD PROFILE FROM SUPABASE
+===================================================== */
+
+async function loadProfile() {
+
+    const { data, error } = await supabaseClient
+        .from("profile")
+        .select("*")
+        .limit(1)
+        .single();
+
+    if (error) {
+
+        console.error("Profile Error:", error);
+
+        return;
+
+    }
+
+    const profileImage =
+        document.querySelector('img[alt="الصورة الشخصية"]');
+
+    if (profileImage && data.image_url) {
+
+        profileImage.src = data.image_url;
+
+    }
+
+}
+
+loadProfile();
