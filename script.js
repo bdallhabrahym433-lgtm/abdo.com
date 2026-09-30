@@ -636,3 +636,75 @@ async function loadExperiences() {
 }
 
 loadExperiences();
+/* =====================================================
+   LOAD DOCUMENTS FROM SUPABASE
+===================================================== */
+
+async function loadDocuments() {
+
+    const { data, error } = await supabaseClient
+        .from("documents")
+        .select("*")
+        .order("id", { ascending: true });
+
+    if (error) {
+
+        console.error("Documents Error:", error);
+
+        return;
+
+    }
+
+    const documentsGrid =
+        document.getElementById("documentsGrid");
+
+    if (!documentsGrid) return;
+
+    documentsGrid.innerHTML = "";
+
+    data.forEach(documentItem => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "document-card";
+
+        card.dataset.category =
+            documentItem.document_type || "all";
+
+        card.dataset.title =
+            documentItem.title || "";
+
+        card.innerHTML = `
+            <div class="document-image">
+
+                ${
+                    documentItem.image_url
+                    ? `<img src="${documentItem.image_url}"
+                            alt="${documentItem.title || "وثيقة"}">`
+                    : ""
+                }
+
+            </div>
+
+            <div class="document-content">
+
+                <h3>
+                    ${documentItem.title || ""}
+                </h3>
+
+                <p>
+                    ${documentItem.description || ""}
+                </p>
+
+            </div>
+        `;
+
+        documentsGrid.appendChild(card);
+
+    });
+
+}
+
+loadDocuments();
