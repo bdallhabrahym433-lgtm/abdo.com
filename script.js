@@ -740,3 +740,57 @@ async function loadProfile() {
 }
 
 loadProfile();
+/* =====================================================
+   CONTACT FORM
+===================================================== */
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const message =
+            document.getElementById("message").value.trim();
+
+        const formMessage =
+            document.getElementById("formMessage");
+
+        formMessage.textContent = "جاري الإرسال...";
+
+        const { error } = await supabaseClient
+            .from("messages")
+            .insert([
+                {
+                    name: name,
+                    email: email,
+                    message: message
+                }
+            ]);
+
+        if (error) {
+
+            console.error("Message Error:", error);
+
+            formMessage.textContent =
+                "حدث خطأ أثناء إرسال الرسالة.";
+
+            return;
+        }
+
+        formMessage.textContent =
+            "تم إرسال رسالتك بنجاح ✅";
+
+        contactForm.reset();
+
+    });
+
+}
