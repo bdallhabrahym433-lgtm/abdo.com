@@ -421,58 +421,6 @@ document.addEventListener(
 );
 
 
-/* =====================================================
-   CONTACT FORM
-===================================================== */
-
-const contactForm =
-    document.getElementById("contactForm");
-
-const formMessage =
-    document.getElementById("formMessage");
-
-
-contactForm.addEventListener(
-    "submit",
-    event => {
-
-        event.preventDefault();
-
-        const name =
-            document.getElementById("name")
-                .value.trim();
-
-        const email =
-            document.getElementById("email")
-                .value.trim();
-
-        const message =
-            document.getElementById("message")
-                .value.trim();
-
-
-        if (
-            !name ||
-            !email ||
-            !message
-        ) {
-
-            formMessage.textContent =
-                "يرجى تعبئة جميع الحقول.";
-
-            return;
-
-        }
-
-
-        formMessage.textContent =
-            "تم إدخال الرسالة بنجاح. اربط النموذج بخدمة بريد إلكتروني لإرسالها فعليًا.";
-
-        contactForm.reset();
-
-    }
-);
-
 
 /* =====================================================
    SUPABASE CONNECTION TEST
